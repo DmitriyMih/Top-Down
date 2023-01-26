@@ -146,7 +146,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 277058483}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -252,7 +252,6 @@ GameObject:
   - component: {fileID: 436920438}
   - component: {fileID: 436920441}
   - component: {fileID: 436920440}
-  - component: {fileID: 436920439}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -274,19 +273,6 @@ Transform:
   m_Father: {fileID: 277058484}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!135 &436920439
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 436920437}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &436920440
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -543,11 +529,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camera: {fileID: 8944336656349189699}
-  deadZoneWidth: {x: 100, y: 100}
+  deadZoneWidth: {x: 50, y: 50}
   deadZoneHeight: {x: 50, y: 50}
+  isAiming: 1
+  aimClampRadius: 0
   lineRenderer: {fileID: 583983549}
   player: {fileID: 583983548}
-  target: {fileID: 277058484}
+  aimTarget: {fileID: 277058484}
 --- !u!1 &633569645
 GameObject:
   m_ObjectHideFlags: 0
@@ -1700,7 +1688,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2070925443028286612}
   m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: -45.927933, y: 38.875004, z: -45.92793}
+  m_LocalPosition: {x: -46.095543, y: 38.875004, z: -45.76032}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2070925443526839471}
@@ -1745,10 +1733,10 @@ MonoBehaviour:
   m_YDamping: 1
   m_ZDamping: 1
   m_TargetMovementOnly: 1
-  m_ScreenX: 0.5
+  m_ScreenX: 0.5166667
   m_ScreenY: 0.5
   m_CameraDistance: 75
-  m_DeadZoneWidth: 0.004166667
+  m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
   m_DeadZoneDepth: 0
   m_UnlimitedSoftZone: 0
@@ -4166,7 +4154,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8944336656349189697}
   m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: -45.927933, y: 38.875004, z: -45.92793}
+  m_LocalPosition: {x: -46.095543, y: 38.875004, z: -45.76032}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
