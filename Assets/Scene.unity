@@ -496,7 +496,7 @@ MonoBehaviour:
   deadZoneHeight: {x: 50, y: 50}
   isAiming: 1
   aimCircleClamping: 1
-  aimClampRadius: 7.5
+  aimClampRadius: 5.5
   aimLineRender: {fileID: 1371228381}
   redAimLineRender: {fileID: 960532748}
   player: {fileID: 583983548}
@@ -1497,7 +1497,7 @@ GameObject:
   - component: {fileID: 2061546892}
   - component: {fileID: 2061546893}
   m_Layer: 5
-  m_Name: Group 81
+  m_Name: Cross
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
