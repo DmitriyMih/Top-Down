@@ -28,9 +28,9 @@ namespace StarterAssets
                 {
                     HideAll();
                     layerIndex = newIndex;
+                    ShowToIndex(layerIndex);
                 }
 
-                ShowToIndex(newIndex);
             }
         }
 
@@ -62,7 +62,9 @@ namespace StarterAssets
                 if (i > 0)
                     layers[i].ShowFloor();
 
-                layers[i].ShowObjects();
+                Debug.Log("Show - " + i);
+                if (i > 0)
+                    layers[i - 1].ShowObjects();
             }
         }
 
@@ -103,6 +105,7 @@ namespace StarterAssets
             {
                 this.personController = null;
                 isActive = false;
+                LayerIndex = -2;
             }
         }
     }

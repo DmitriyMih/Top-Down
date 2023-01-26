@@ -23,6 +23,7 @@ namespace StarterAssets
             hideRenderers.AddRange(hideGroup.GetComponentsInChildren<MeshRenderer>());
         }
 
+        [ContextMenu("Hide Layer")]
         public void HideFloor()
         {
             for (int i = 0; i < floor.Count; i++)
@@ -33,6 +34,8 @@ namespace StarterAssets
                 floor[i].SetActive(true);
             }
         }
+
+        [ContextMenu("Show Layer")]
         public void ShowFloor()
         {
             for (int i = 0; i < floor.Count; i++)
@@ -68,6 +71,7 @@ namespace StarterAssets
         //    building.LayerIndex = index;
         //}
 
+        [ContextMenu("Show Objects")]
         public void ShowObjects()
         {
             for (int i = 0; i < hideRenderers.Count; i++)
@@ -79,6 +83,7 @@ namespace StarterAssets
             }
         }
 
+        [ContextMenu("Hide Objects")]
         public void HideObjects()
         {
             for (int i = 0; i < hideRenderers.Count; i++)
