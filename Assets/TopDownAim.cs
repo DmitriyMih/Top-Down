@@ -29,9 +29,12 @@ namespace StarterAssets
             if (isAiming)
                 if (aimTarget != null && camera != null)
                 {
-                    Ray ray = camera.ScreenPointToRay(Mouse.current.position.ReadValue());
+                    Vector2 mousePosition = Mouse.current.position.ReadValue();
+                    mousePosition = new Vector2(Mathf.Clamp(mousePosition.x, 0 + deadZoneWidth.x, Screen.width - deadZoneWidth.y), Mathf.Clamp(mousePosition.y, 0 + deadZoneHeight.x, Screen.height - deadZoneHeight.y));
 
-                    if(Physics.Raycast(ray, out RaycastHit hit) && hit.collider)
+                    Ray ray = camera.ScreenPointToRay(mousePosition);
+
+                    if (Physics.Raycast(ray, out RaycastHit hit) && hit.collider)
                     {
                         aimTarget.position = hit.point;
                     }
