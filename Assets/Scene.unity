@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 277058484}
   m_Layer: 5
-  m_Name: Aim Target
+  m_Name: Aim Cross
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -147,7 +147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 277058483}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.25, y: 1, z: 0.5}
+  m_LocalPosition: {x: -7.25, y: 1, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 436920438}
@@ -562,7 +562,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 633569645}
   m_LocalRotation: {x: 0.23911765, y: 0.3696438, z: -0.09904577, w: 0.89239913}
-  m_LocalPosition: {x: -53.177933, y: 38.500008, z: -45.427933}
+  m_LocalPosition: {x: -53.177933, y: 38.500004, z: -47.92793}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 421223763}
