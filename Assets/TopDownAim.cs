@@ -13,21 +13,23 @@ namespace StarterAssets
         [SerializeField, Min(0)] private Vector2Int deadZoneHeight;
 
         [Header("Aim Settings")]
-        [SerializeField] private bool isAiming = false;
+        [SerializeField] private bool isAiming;
+        [SerializeField] public bool aimCircleClamping;
 
         [SerializeField] public float aimClampRadius;
 
         [Header("Aim Elements Settings")]
-        [SerializeField] private LineRenderer lineRenderer;
+        [SerializeField] private LineRenderer aimLineRender;
+        [SerializeField] private LineRenderer redAimLineRender;
 
         [SerializeField] private Transform player;
         [SerializeField] private Transform aimTarget;
-
+        [SerializeField] private Transform aimEndPoint;
 
         private void Update()
         {
             if (isAiming)
-                if (aimTarget != null && camera != null)
+                if (aimTarget != null && camera != null && aimEndPoint != null)
                 {
                     Vector2 mousePosition = Mouse.current.position.ReadValue();
                     mousePosition = new Vector2(Mathf.Clamp(mousePosition.x, 0 + deadZoneWidth.x, Screen.width - deadZoneWidth.y), Mathf.Clamp(mousePosition.y, 0 + deadZoneHeight.x, Screen.height - deadZoneHeight.y));
@@ -36,19 +38,39 @@ namespace StarterAssets
 
                     if (Physics.Raycast(ray, out RaycastHit hit) && hit.collider)
                     {
-                        aimTarget.position = hit.point;
+                        Vector3 newWorldPosition = hit.point;
+                        aimEndPoint.position = newWorldPosition;
+
+                        if (aimCircleClamping)
+                        {
+                            Vector3 offset = newWorldPosition - player.position;
+                            newWorldPosition = player.position + Vector3.ClampMagnitude(offset, aimClampRadius);
+                        }
+
+                        aimTarget.position = newWorldPosition;
                     }
                 }
 
-            if (lineRenderer != null)
+            if (aimLineRender != null)
             {
-                lineRenderer.positionCount = 2;
+                aimLineRender.positionCount = 2;
 
                 if (player != null)
-                    lineRenderer.SetPosition(0, player.position);
+                    aimLineRender.SetPosition(0, player.position);
 
                 if (aimTarget != null)
-                    lineRenderer.SetPosition(1, aimTarget.position);
+                    aimLineRender.SetPosition(1, aimTarget.position);
+            }
+
+            if(redAimLineRender != null)
+            {
+                redAimLineRender.positionCount = 2;
+
+                if (aimTarget != null)
+                    redAimLineRender.SetPosition(0, aimTarget.position);
+
+                if (aimEndPoint != null)
+                    redAimLineRender.SetPosition(1, aimEndPoint.position);
             }
         }
     }
