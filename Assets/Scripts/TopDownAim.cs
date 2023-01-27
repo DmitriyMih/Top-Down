@@ -26,8 +26,19 @@ namespace StarterAssets
         [SerializeField] private Transform aimTarget;
         [SerializeField] private Transform aimEndPoint;
 
+        [SerializeField] private PlayerInput playerInput;
+        public bool isGamepad;
+
+        public void OnDeviceChange(PlayerInput playerInput)
+        {
+            isGamepad = playerInput.currentControlScheme.Equals("Gamepad") ? true : false;
+        }
+
         private void Update()
         {
+            if (playerInput != null)
+                OnDeviceChange(playerInput);
+
             if (isAiming)
                 if (aimTarget != null && camera != null && aimEndPoint != null)
                 {
