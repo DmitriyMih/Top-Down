@@ -15,7 +15,7 @@ namespace StarterAssets
             set
             {
                 //Debug.Log("Value - " + value);
-                if (value < 0 || value > layers.Count - 1)
+                if (value < 0 || value >= layers.Count)
                 {
                     HideAll();
                     layerIndex = value;
@@ -57,7 +57,7 @@ namespace StarterAssets
         private void ShowToIndex(int index)
         {
             int newIndex = Mathf.Clamp(index, 0, layers.Count - 1);
-            for (int i = layers.Count - 1; i > newIndex - 1; i--)
+            for (int i = layers.Count - 1; i > newIndex; i--)
             {
                 if (i > 0)
                     layers[i].ShowFloor();
@@ -81,8 +81,11 @@ namespace StarterAssets
             if (position.y < 0)
                 return -99;
 
-            int layer = -1;
-            layer = Mathf.RoundToInt(position.y / layerHieght);
+            int layer = (int)(position.y / layerHieght);
+            //Debug.Log($"Check 1 - {(position.y / layerHieght)}");
+            //Debug.Log($"Check 2 - {(position.y % layerHieght)}");
+            //layer = Mathf.RoundToInt(position.y / layerHieght);
+            Debug.Log("Send Layer - " + layer);
             return layer;
         }
 
@@ -105,7 +108,20 @@ namespace StarterAssets
             {
                 this.personController = null;
                 isActive = false;
-                LayerIndex = -2;
+                LayerIndex = -1;
+            }
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+
+            if (personController != null)
+                Gizmos.DrawSphere(personController.transform.position, 1f);
+
+            for (int i = 0; i < layers.Count - 1; i++)
+            {
+
             }
         }
     }
