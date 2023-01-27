@@ -7,8 +7,6 @@ namespace StarterAssets
     public class Layer : MonoBehaviour
     {
         [Header("Connect Settings")]
-        [SerializeField] private Building building;
-
         [SerializeField] private int layerIndex;
         public int LayerIndex => layerIndex;
 
@@ -21,6 +19,11 @@ namespace StarterAssets
         private void Awake()
         {
             hideRenderers.AddRange(hideGroup.GetComponentsInChildren<MeshRenderer>());
+        }
+
+        public void InitializationLayer(int newIndex)
+        {
+            layerIndex = newIndex;
         }
 
         [ContextMenu("Hide Layer")]
@@ -46,30 +49,6 @@ namespace StarterAssets
                 floor[i].SetActive(false);
             }
         }
-
-        public void InitializationLayer(Building building, int newIndex)
-        {
-            this.building = building;
-            layerIndex = newIndex;
-        }
-
-        //public void SendIndex()
-        //{
-        //    int index = layerIndex;
-        //    if (layerIndex == building.LayersCount - 1)
-        //        index = 99;
-
-        //    building.LayerIndex = index;
-        //}
-
-        //public void ResetIndex()
-        //{
-        //    int index = layerIndex;
-        //    if (layerIndex == 0)
-        //        index = -1;
-
-        //    building.LayerIndex = index;
-        //}
 
         [ContextMenu("Show Objects")]
         public void ShowObjects()

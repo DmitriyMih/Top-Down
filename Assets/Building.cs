@@ -9,6 +9,11 @@ namespace StarterAssets
         [SerializeField] private List<Layer> layers = new List<Layer>();
         public int LayersCount => layers.Count;
 
+        [Header("Layer Settings")]
+        [SerializeField] private bool isActive = false;
+        [SerializeField] private ThirdPersonController personController;
+        [SerializeField] private float layerHieght;
+
         public int LayerIndex
         {
             get => layerIndex;
@@ -39,10 +44,9 @@ namespace StarterAssets
         private void Awake()
         {
             layers.AddRange(GetComponentsInChildren<Layer>());
+
             for (int i = 0; i < layers.Count; i++)
-            {
-                layers[i].InitializationLayer(this, i);
-            }
+                layers[i].InitializationLayer(i);
         }
 
         private void HideAll()
@@ -82,16 +86,8 @@ namespace StarterAssets
                 return -99;
 
             int layer = (int)(position.y / layerHieght);
-            //Debug.Log($"Check 1 - {(position.y / layerHieght)}");
-            //Debug.Log($"Check 2 - {(position.y % layerHieght)}");
-            //layer = Mathf.RoundToInt(position.y / layerHieght);
-            Debug.Log("Send Layer - " + layer);
             return layer;
         }
-
-        [SerializeField] private bool isActive = false;
-        [SerializeField] private ThirdPersonController personController;
-        [SerializeField] private float layerHieght;
 
         private void OnTriggerEnter(Collider other)
         {
@@ -109,19 +105,6 @@ namespace StarterAssets
                 this.personController = null;
                 isActive = false;
                 LayerIndex = -1;
-            }
-        }
-
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = Color.red;
-
-            if (personController != null)
-                Gizmos.DrawSphere(personController.transform.position, 1f);
-
-            for (int i = 0; i < layers.Count - 1; i++)
-            {
-
             }
         }
     }
