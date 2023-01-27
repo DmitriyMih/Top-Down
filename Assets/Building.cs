@@ -6,7 +6,7 @@ namespace StarterAssets
 {
     public class Building : MonoBehaviour
     {
-        [SerializeField] private List<Layer> layers = new List<Layer>();
+        [SerializeField] private List<BuildingLayer> layers = new List<BuildingLayer>();
         public int LayersCount => layers.Count;
 
         [Header("Layer Settings")]
@@ -43,7 +43,7 @@ namespace StarterAssets
 
         private void Awake()
         {
-            layers.AddRange(GetComponentsInChildren<Layer>());
+            layers.AddRange(GetComponentsInChildren<BuildingLayer>());
 
             for (int i = 0; i < layers.Count; i++)
                 layers[i].InitializationLayer(i);
@@ -54,7 +54,7 @@ namespace StarterAssets
             for (int i = 0; i < layers.Count; i++)
             {
                 layers[i].HideFloor();
-                layers[i].HideObjects();
+                layers[i].HideWalls();
             }
         }
 
@@ -68,7 +68,7 @@ namespace StarterAssets
 
                 Debug.Log("Show - " + i);
                 if (i > 0)
-                    layers[i - 1].ShowObjects();
+                    layers[i - 1].ShowWalls();
             }
         }
 

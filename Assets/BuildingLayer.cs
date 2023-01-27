@@ -4,21 +4,30 @@ using UnityEngine;
 
 namespace StarterAssets
 {
-    public class Layer : MonoBehaviour
+    public class BuildingLayer : MonoBehaviour
     {
         [Header("Connect Settings")]
         [SerializeField] private int layerIndex;
         public int LayerIndex => layerIndex;
 
         [Header("Content Settings")]
+        [SerializeField] private List<GameObject> floor = new List<GameObject>();
+
+        [Space]
         [SerializeField] private Transform hideGroup;
         [SerializeField] private List<MeshRenderer> hideRenderers = new List<MeshRenderer>();
 
-        [SerializeField] private List<GameObject> floor = new List<GameObject>();
+        [Space]
+        [SerializeField] private Transform layerContentGroup;
+        [SerializeField] private List<MeshRenderer> layerContentRenderers = new List<MeshRenderer>();
 
         private void Awake()
         {
-            hideRenderers.AddRange(hideGroup.GetComponentsInChildren<MeshRenderer>());
+            if (hideGroup != null)
+                hideRenderers.AddRange(hideGroup.GetComponentsInChildren<MeshRenderer>());
+
+            if (layerContentGroup != null)
+                layerContentRenderers.AddRange(layerContentGroup.GetComponentsInChildren<MeshRenderer>());
         }
 
         public void InitializationLayer(int newIndex)
@@ -50,8 +59,8 @@ namespace StarterAssets
             }
         }
 
-        [ContextMenu("Show Objects")]
-        public void ShowObjects()
+        [ContextMenu("Show Walls")]
+        public void ShowWalls()
         {
             for (int i = 0; i < hideRenderers.Count; i++)
             {
@@ -62,8 +71,8 @@ namespace StarterAssets
             }
         }
 
-        [ContextMenu("Hide Objects")]
-        public void HideObjects()
+        [ContextMenu("Hide Walls")]
+        public void HideWalls()
         {
             for (int i = 0; i < hideRenderers.Count; i++)
             {
