@@ -399,7 +399,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67632a16ecbef8049801b4b3215e37c9, type: 2}
+  - {fileID: 2100000, guid: 7e1373f6d8240ff42808a2b058e6175f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4427,7 +4427,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7e1373f6d8240ff42808a2b058e6175f, type: 2}
+  - {fileID: 2100000, guid: 67632a16ecbef8049801b4b3215e37c9, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -20391,7 +20391,6 @@ MonoBehaviour:
   isAiming: 1
   aimCircleClamping: 1
   aimClampRadius: 5.5
-  TestStopGampad: 0
   player: {fileID: 583983548}
   aimTarget: {fileID: 277058484}
   aimRayTarget: {fileID: 384727538}

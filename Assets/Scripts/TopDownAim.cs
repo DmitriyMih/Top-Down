@@ -24,7 +24,6 @@ namespace StarterAssets
         [SerializeField] public bool aimCircleClamping;
 
         [SerializeField] public float aimClampRadius;
-        public bool TestStopGampad = false;
 
         [Header("Aim Elements Settings")]
         [SerializeField] private Transform player;
@@ -41,8 +40,7 @@ namespace StarterAssets
 
         public void OnDeviceChange(PlayerInput playerInput)
         {
-            if (TestStopGampad)
-                isGamepad = playerInput.currentControlScheme.Equals("Gamepad") ? true : false;
+            isGamepad = playerInput.currentControlScheme.Equals("Gamepad") ? true : false;
         }
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
@@ -53,8 +51,7 @@ namespace StarterAssets
         }
         public void LookInput(Vector2 newLookDirection)
         {
-            if (!TestStopGampad)
-                look = newLookDirection;
+            look = newLookDirection;
         }
 #endif
 
@@ -80,20 +77,16 @@ namespace StarterAssets
                 Vector3 aimDirection = new Vector3((look.x), 0, (look.y));
                 aimDirection *= aimClampRadius;
 
-                //CustomFunctions.ClampInCircle(ref worldPosition, player.position, aimClampRadius);
                 Vector3 worldPosition = player.position + aimDirection;
+                //CustomFunctions.ClampInCircle(ref worldPosition, player.position, aimClampRadius);
 
                 if (aimTarget != null)
                     aimTarget.position = worldPosition;
 
-                Vector3 hitPosition = mainCamera.ScreenToWorldPoint(aimDirection);
-                //if (Physics.Raycast(ray, out RaycastHit hit) && hit.collider)
-                //{
-
-                //}
-
+                Vector3 rayTargetPosition = worldPosition;
+            
                 if (aimRayTarget != null)
-                    aimRayTarget.position = hitPosition;
+                    aimRayTarget.position = rayTargetPosition;
             }
             else
             {
@@ -114,11 +107,11 @@ namespace StarterAssets
                     if (aimCircleClamping)
                         CustomFunctions.ClampInCircle(ref newWorldPosition, player.position, aimClampRadius);
 
-                    if (aimTarget != null)
-                        aimTarget.position = newWorldPosition;
-
                     if (aimRayTarget != null)
-                        aimRayTarget.position = new Vector3(newWorldPosition.x, player.position.y, newWorldPosition.z);
+                        aimRayTarget.position = newWorldPosition;
+
+                    if (aimTarget != null)
+                        aimTarget.position = new Vector3(newWorldPosition.x, player.position.y, newWorldPosition.z);
                 }
             }
 
@@ -151,10 +144,10 @@ namespace StarterAssets
 
                 if (player != null)
                     aimLineRender.SetPosition(0, player.position);
-                    //aimLineRender.SetPosition(0, Vector3.zero);
+                //aimLineRender.SetPosition(0, Vector3.zero);
 
                 if (aimTarget != null)
-                    aimLineRender.SetPosition(1, aimTarget.position);
+                    aimLineRender.SetPosition(1, aimRayTarget.position);
             }
         }
     }
