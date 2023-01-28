@@ -78,15 +78,31 @@ namespace StarterAssets
                 aimDirection *= aimClampRadius;
 
                 Vector3 worldPosition = player.position + aimDirection;
-                //CustomFunctions.ClampInCircle(ref worldPosition, player.position, aimClampRadius);
+                CustomFunctions.ClampInCircle(ref worldPosition, player.position, aimClampRadius);
 
                 if (aimTarget != null)
                     aimTarget.position = worldPosition;
 
-                Vector3 rayTargetPosition = worldPosition;
-            
+                Ray ray = new Ray(player.position, Vector3.forward);
+                Debug.DrawRay(player.position, Vector3.forward, Color.red);
+
+                Vector3 aimWorldPosition = worldPosition;
+
+                if (Physics.Raycast(ray, out RaycastHit hit, 500) && hit.collider)
+                {
+                    Vector3 newWorldPosition = hit.point;
+                    Debug.Log("Object - " + hit.collider.gameObject.name);
+                    Debug.DrawLine(mainCamera.transform.position, hit.point, Color.red);
+
+                    if (aimCircleClamping)
+                        CustomFunctions.ClampInCircle(ref newWorldPosition, player.position, aimClampRadius);
+
+                    //aimWorldPosition = newWorldPosition;
+
                 if (aimRayTarget != null)
-                    aimRayTarget.position = rayTargetPosition;
+                    aimRayTarget.position = hit.point;
+                    //aimRayTarget.position = aimWorldPosition;
+                }
             }
             else
             {
