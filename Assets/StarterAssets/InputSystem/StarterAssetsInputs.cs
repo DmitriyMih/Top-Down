@@ -13,8 +13,6 @@ namespace StarterAssets
 		public bool jump;
 		public bool sprint;
 
-		public bool isGamepad;
-
 		[Header("Movement Settings")]
 		public bool analogMovement;
 
@@ -23,11 +21,6 @@ namespace StarterAssets
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
 #endif
-
-		public void OnDeviceChange(PlayerInput playerInput)
-        {
-			isGamepad = playerInput.currentControlScheme.Equals("Gamepad") ? true : false;
-        }
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 		public void OnMove(InputValue value)
@@ -92,5 +85,4 @@ namespace StarterAssets
 #endif
 
 	}
-	
 }
