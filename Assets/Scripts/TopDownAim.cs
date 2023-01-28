@@ -7,27 +7,35 @@ namespace StarterAssets
 {
     public class TopDownAim : MonoBehaviour
     {
+        [Header("Input Settings")]
+
+        [SerializeField] private PlayerInput playerInput;
+        public bool isGamepad;
+
         [Header("Screen Settings")]
         [SerializeField] private Camera camera;
         [SerializeField, Min(0)] private Vector2Int deadZoneWidth;
         [SerializeField, Min(0)] private Vector2Int deadZoneHeight;
-
-        [Header("Aim Settings")]
+        
+        [Header("Aim Settings"), Space]
         [SerializeField] private bool isAiming;
         [SerializeField] public bool aimCircleClamping;
 
         [SerializeField] public float aimClampRadius;
 
         [Header("Aim Elements Settings")]
-        [SerializeField] private LineRenderer aimLineRender;
-        [SerializeField] private LineRenderer redAimLineRender;
-
         [SerializeField] private Transform player;
         [SerializeField] private Transform aimTarget;
         [SerializeField] private Transform aimEndPoint;
 
-        [SerializeField] private PlayerInput playerInput;
-        public bool isGamepad;
+        [Header("Aim Line Settings")]
+        [SerializeField] private LineRenderer aimLineRender;
+        [SerializeField] private LineRenderer redAimLineRender;
+
+        private void Awake()
+        {
+            playerInput = GetComponent<PlayerInput>();
+        }
 
         public void OnDeviceChange(PlayerInput playerInput)
         {
