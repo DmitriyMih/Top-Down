@@ -38,9 +38,9 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Dop Menu",
+                    "name": "Aim",
                     "type": "Button",
-                    "id": "67adb0d7-7125-442d-8384-e0b9330acfdc",
+                    "id": "189544d0-8e1d-4bf8-b9ad-5f7ef3288041",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -160,9 +160,9 @@
                 {
                     "name": "",
                     "id": "ed66cbff-2900-4a62-8896-696503cfcd31",
-                    "path": "<Pointer>/delta",
+                    "path": "<Mouse>/delta",
                     "interactions": "",
-                    "processors": "InvertVector2(invertX=false),ScaleVector2(x=15,y=15)",
+                    "processors": "InvertVector2(invertX=false,invertY=false),NormalizeVector2,StickDeadzone",
                     "groups": "KeyboardMouse",
                     "action": "Look",
                     "isComposite": false,
@@ -225,23 +225,23 @@
                 },
                 {
                     "name": "",
-                    "id": "a283eff3-aa6e-4acb-b1bc-3a3665b49ef6",
-                    "path": "<Gamepad>/start",
+                    "id": "f622ec0d-3062-4074-b875-c1804a2d5a4b",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Gamepad;Xbox Controller;PS4 Controller",
-                    "action": "Dop Menu",
+                    "groups": "KeyboardMouse",
+                    "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "4946f259-2b40-411b-97f9-cd4b8aeda2f9",
-                    "path": "<Keyboard>/tab",
+                    "id": "340e4e55-0be0-452b-9b0c-c1d8a9c0e141",
+                    "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
                     "processors": "",
-                    "groups": "KeyboardMouse",
-                    "action": "Dop Menu",
+                    "groups": "Gamepad;Xbox Controller;PS4 Controller",
+                    "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
