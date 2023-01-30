@@ -63,13 +63,14 @@ namespace StarterAssets
             if (assetsInputs.look == Vector2.zero)
                 return;
 
+            assetsInputs.look = new Vector2(Mathf.Clamp(assetsInputs.look.x, -1, 1), Mathf.Clamp(assetsInputs.look.y, -1, 1));
             Vector3 aimOffcetDirection = mainCamera.transform.forward;
             Vector3 aimDirection = new Vector3(assetsInputs.look.x * aimOffcetDirection.x, 0, assetsInputs.look.y * aimOffcetDirection.z);
             aimDirection *= aimClampRadius;
 
             Vector3 worldPosition = new Vector3();
 
-            if (isGamepad)
+            if (isGamepad || assetsInputs.isAndroid)
             {
                 worldPosition = player.position + aimDirection;
             }
@@ -105,7 +106,7 @@ namespace StarterAssets
 
         private void CheckRayToWorld(ref Vector3 worldPosition)
         {
-            Debug.Log($"Enter Value {worldPosition} | Systen Gamepad {isGamepad}");
+            //Debug.Log($"Enter Value {worldPosition} | Systen Gamepad {isGamepad}");
             Ray ray = new Ray(mainCamera.transform.position, worldPosition - mainCamera.transform.position);
             Debug.DrawRay(mainCamera.transform.position, worldPosition - mainCamera.transform.position, Color.red);
 
@@ -116,7 +117,7 @@ namespace StarterAssets
             }
 
             CustomFunctions.ClampInCircle(ref worldPosition, player.position, aimClampRadius);
-            Debug.Log($"Exit Value {worldPosition} | Systen Gamepad {isGamepad}");
+            //Debug.Log($"Exit Value {worldPosition} | Systen Gamepad {isGamepad}");
         }
     }
 }

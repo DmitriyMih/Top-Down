@@ -20,6 +20,7 @@ public class UIVirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandle
 
     [Header("Output")]
     public UnityEvent<Vector2> joystickOutputEvent;
+    public UnityEvent<bool> buttonOutputEvent;
 
     void Start()
     {
@@ -37,6 +38,7 @@ public class UIVirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandle
     public void OnPointerDown(PointerEventData eventData)
     {
         OnDrag(eventData);
+        OutputButtonEventValue(true);
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -50,6 +52,7 @@ public class UIVirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandle
 
         Vector2 outputPosition = ApplyInversionFilter(position);
 
+        Debug.Log($"Joy | Position {position.x} | Value {outputPosition * magnitudeMultiplier}");
         OutputPointerEventValue(outputPosition * magnitudeMultiplier);
 
         if(handleRect)
@@ -64,14 +67,20 @@ public class UIVirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandle
         OutputPointerEventValue(Vector2.zero);
 
         if(handleRect)
-        {
              UpdateHandleRectPosition(Vector2.zero);
-        }
+
+        OutputButtonEventValue(false);
     }
 
     private void OutputPointerEventValue(Vector2 pointerPosition)
     {
+        Debug.Log("Look Pointer Position - " + pointerPosition);
         joystickOutputEvent.Invoke(pointerPosition);
+    }
+
+    private void OutputButtonEventValue(bool buttonState)
+    {
+        buttonOutputEvent.Invoke(buttonState);
     }
 
     private void UpdateHandleRectPosition(Vector2 newPosition)

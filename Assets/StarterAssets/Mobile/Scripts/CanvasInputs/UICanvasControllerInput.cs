@@ -15,6 +15,7 @@ namespace StarterAssets
 
         public void VirtualLookInput(Vector2 virtualLookDirection)
         {
+            Debug.Log("Virtual Look - " + virtualLookDirection);
             starterAssetsInputs.LookInput(virtualLookDirection);
         }
 
@@ -28,9 +29,9 @@ namespace StarterAssets
             starterAssetsInputs.SprintInput(virtualSprintState);
         }
 
-        public void VirtualAimInput(bool virtualAimState)
+        public void VirtualAimButtonState(bool aimButtonState)
         {
-            starterAssetsInputs.AimInput(virtualAimState);
+            starterAssetsInputs.AimButtonState(aimButtonState);
         }
     }
 }
