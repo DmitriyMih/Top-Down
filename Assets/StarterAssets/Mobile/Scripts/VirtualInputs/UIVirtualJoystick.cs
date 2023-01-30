@@ -45,9 +45,9 @@ public class UIVirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandle
     {
 
         RectTransformUtility.ScreenPointToLocalPointInRectangle(containerRect, eventData.position, eventData.pressEventCamera, out Vector2 position);
-        
+
         position = ApplySizeDelta(position);
-        
+
         Vector2 clampedPosition = ClampValuesToMagnitude(position);
 
         Vector2 outputPosition = ApplyInversionFilter(position);
@@ -74,7 +74,7 @@ public class UIVirtualJoystick : MonoBehaviour, IPointerDownHandler, IDragHandle
 
     private void OutputPointerEventValue(Vector2 pointerPosition)
     {
-        Debug.Log("Look Pointer Position - " + pointerPosition);
+        pointerPosition = new Vector2(Mathf.Clamp(pointerPosition.x, -1f, 1f), Mathf.Clamp(pointerPosition.y, -1f, 1f));
         joystickOutputEvent.Invoke(pointerPosition);
     }
 
