@@ -47,9 +47,9 @@
                 },
                 {
                     "name": "ChangeWeapon",
-                    "type": "PassThrough",
+                    "type": "Value",
                     "id": "65802eb6-f535-48a9-9e78-307d76378143",
-                    "expectedControlType": "",
+                    "expectedControlType": "Double",
                     "processors": "",
                     "interactions": ""
                 }
@@ -276,6 +276,17 @@
                     "isPartOfComposite": true
                 },
                 {
+                    "name": "Negative",
+                    "id": "340d6a6f-aec5-4655-a84a-098ba2bee250",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KeyboardMouse",
+                    "action": "ChangeWeapon",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
                     "name": "Positive",
                     "id": "6f170cc7-4483-4ef2-97d4-1ded40c2726f",
                     "path": "<Gamepad>/rightShoulder",
@@ -287,30 +298,8 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "1D Axis",
-                    "id": "b4b83c17-884f-4e1e-9f12-aabdff852e59",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ChangeWeapon",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "Negative",
-                    "id": "e22731fa-85da-4625-83fc-7eccab5af3af",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KeyboardMouse",
-                    "action": "ChangeWeapon",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "Positive",
-                    "id": "54ea86c9-6ee0-4fec-b98e-05d0c469feef",
+                    "id": "dc6713cf-c0ab-48a3-98ad-512904684c94",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",

@@ -58,7 +58,8 @@ namespace StarterAssets
 
         public void OnChangeWeapon(InputValue value)
         {
-            ChangeWeaponInput(value.Get<int>());
+            Debug.Log("Get - " + value.Get() + " | Is Press " + value.isPressed);
+            ChangeWeaponInput((int)value.Get<float>());
         }
 #else
 	// old input sys if we do decide to have it (most likely wont)...
@@ -92,6 +93,7 @@ namespace StarterAssets
 
         public void ChangeWeaponInput(int directionValue)
         {
+            Debug.Log("Get | Set");
             changeWeaponDirection = directionValue;
         }
 
