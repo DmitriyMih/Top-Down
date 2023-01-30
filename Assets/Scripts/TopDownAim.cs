@@ -13,6 +13,7 @@ namespace StarterAssets
         [SerializeField] private PlayerInput playerInput;
 
         public bool isGamepad;
+        [SerializeField] private float playerOffcetY = 1f;
         public float degree = 0f;
 
         [Header("Screen Settings"), Space]
@@ -93,7 +94,7 @@ namespace StarterAssets
                 aimTarget.position = aimTargetPosition;
 
             if (aimRayTarget != null)
-                aimRayTarget.position = worldPosition;
+                aimRayTarget.position = worldPosition + Vector3.up * playerOffcetY;
 
             if (aimLineRender != null)
             {
