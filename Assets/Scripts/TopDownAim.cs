@@ -106,7 +106,6 @@ namespace StarterAssets
 
         private void CheckRayToWorld(ref Vector3 worldPosition)
         {
-            //Debug.Log($"Enter Value {worldPosition} | Systen Gamepad {isGamepad}");
             Ray ray = new Ray(mainCamera.transform.position, worldPosition - mainCamera.transform.position);
             Debug.DrawRay(mainCamera.transform.position, worldPosition - mainCamera.transform.position, Color.red);
 
@@ -117,7 +116,6 @@ namespace StarterAssets
             }
 
             CustomFunctions.ClampInCircle(ref worldPosition, player.position, aimClampRadius);
-            //Debug.Log($"Exit Value {worldPosition} | Systen Gamepad {isGamepad}");
         }
     }
 }

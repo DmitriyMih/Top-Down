@@ -10,9 +10,12 @@ namespace StarterAssets
         [Header("Character Input Values")]
         public Vector2 move;
         public Vector2 look;
+        
         public bool jump;
         public bool sprint;
         public bool aiming;
+
+        public int changeWeaponDirection;
 
         [Header("Movement Settings")]
         public bool analogMovement;
@@ -52,6 +55,11 @@ namespace StarterAssets
             Debug.Log("Aiming Value - " + value.isPressed);
             AimButtonState(value.isPressed);
         }
+
+        public void OnChangeWeapon(InputValue value)
+        {
+            ChangeWeaponInput(value.Get<int>());
+        }
 #else
 	// old input sys if we do decide to have it (most likely wont)...
 #endif
@@ -82,6 +90,11 @@ namespace StarterAssets
             aiming = aimButtonState;
         }
 
+        public void ChangeWeaponInput(int directionValue)
+        {
+            changeWeaponDirection = directionValue;
+        }
+
 #if !UNITY_IOS || !UNITY_ANDROID
 
         private void OnApplicationFocus(bool hasFocus)
@@ -93,8 +106,6 @@ namespace StarterAssets
         {
             Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
         }
-
 #endif
-
     }
 }
