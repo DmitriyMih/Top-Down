@@ -13,7 +13,7 @@ namespace StarterAssets
         [SerializeField] private PlayerInput playerInput;
 
         public bool isGamepad;
-        [SerializeField] private float playerOffcetY = 1f;
+        [SerializeField] private float mouseOffcetRadius = 0.7f;
         public float degree = 0f;
 
         [Header("Screen Settings"), Space]
@@ -68,7 +68,6 @@ namespace StarterAssets
             aimDirection *= aimClampRadius;
 
             Vector3 worldPosition = new Vector3();
-            Vector3 aimTargetPosition = new Vector3();
 
             if (isGamepad)
             {
@@ -82,19 +81,19 @@ namespace StarterAssets
                 Ray ray = mainCamera.ScreenPointToRay(mousePosition);
 
                 if (Physics.Raycast(ray, out RaycastHit hit, int.MaxValue, layerMask) && hit.collider)
-                    worldPosition = CustomFunctions.ClampInCircle(hit.point, player.position, aimClampRadius);
+                    worldPosition = CustomFunctions.ClampInCircle(hit.point, player.position, aimClampRadius - mouseOffcetRadius);
             }
 
             CheckRayToWorld(ref worldPosition);
             if (aimRayTarget != null)
                 aimRayTarget.position = worldPosition;
 
-            aimTargetPosition = new Vector3(worldPosition.x, player.position.y, worldPosition.z);
+            Vector3 aimTargetPosition = new Vector3(worldPosition.x, player.position.y, worldPosition.z);
             if (aimTarget != null)
                 aimTarget.position = aimTargetPosition;
 
             if (aimRayTarget != null)
-                aimRayTarget.position = worldPosition + Vector3.up * playerOffcetY;
+                aimRayTarget.position = worldPosition;
 
             if (aimLineRender != null)
             {
@@ -104,7 +103,7 @@ namespace StarterAssets
             }
         }
 
-        public void CheckRayToWorld(ref Vector3 worldPosition)
+        private void CheckRayToWorld(ref Vector3 worldPosition)
         {
             Debug.Log($"Enter Value {worldPosition} | Systen Gamepad {isGamepad}");
             Ray ray = new Ray(mainCamera.transform.position, worldPosition - mainCamera.transform.position);
