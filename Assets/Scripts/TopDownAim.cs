@@ -60,8 +60,14 @@ namespace StarterAssets
             if (playerInput != null)
                 OnDeviceChange(playerInput);
 
+            aimTarget.gameObject.SetActive(assetsInputs.aiming);
+            aimRayTarget.gameObject.SetActive(assetsInputs.aiming);
+
             if (!assetsInputs.aiming)
+            {
+                aimLineRender.positionCount = 0;
                 return;
+            }
 
             assetsInputs.look = new Vector2(Mathf.Clamp(assetsInputs.look.x, -1, 1), Mathf.Clamp(assetsInputs.look.y, -1, 1));
             Vector3 aimOffcetDirection = mainCamera.transform.forward;
