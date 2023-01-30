@@ -74,7 +74,6 @@ namespace StarterAssets
 
         public void SprintInput(bool newSprintState)
         {
-            Debug.Log("Sprint " + newSprintState + " | Old - " + sprint);
             sprint = newSprintState;
         }
 

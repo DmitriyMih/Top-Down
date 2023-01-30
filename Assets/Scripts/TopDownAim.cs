@@ -60,7 +60,7 @@ namespace StarterAssets
             if (playerInput != null)
                 OnDeviceChange(playerInput);
 
-            if (assetsInputs.look == Vector2.zero)
+            if (!assetsInputs.aiming)
                 return;
 
             assetsInputs.look = new Vector2(Mathf.Clamp(assetsInputs.look.x, -1, 1), Mathf.Clamp(assetsInputs.look.y, -1, 1));
